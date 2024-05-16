@@ -5,15 +5,11 @@
 #include "hangman.h"
 
 
-
-
-
-
 char secretWord[WORD_SIZE];
 char guesses[26];
 int tries = 0;
 
-
+//adds a word to the word bank by reading from "words.txt"; adds +1 to the counter of words on LINE 1 and adds the user's word at the bottom line.
 void add_word() {
     char choice;
     printf("Do you wish to add a new word to the game? (Y/N)\n");
@@ -47,7 +43,7 @@ void add_word() {
     }
 }
 
-
+//reads from the "words.txt" file and sets the secretWord variable to the scanned "string" array.
 void choose_word () {
     FILE* f;
 
@@ -72,6 +68,7 @@ void choose_word () {
 
 }
 
+//Displays the opening "menu" of the game.
 void opening() {
     printf("*****************************\n");
     printf("  ----  Hangman Game   ----  \n");
@@ -80,6 +77,7 @@ void opening() {
 
 }
 
+//Scans for the user's guess, adds it to the array "guesses" at the position [tries], and increments tries by 1.
 void get_guess() {
         char guess;
         scanf(" %c", &guess);
@@ -87,6 +85,8 @@ void get_guess() {
         tries ++;
 }
 
+//compares the char "letter" (user's guess) to the guesses array at the position [j], if the "letter" is found at any position of the array, returns 1;
+//otherwise returns 0.
 int already_guessed(char letter) {
     int found = 0;
 
@@ -100,6 +100,8 @@ int already_guessed(char letter) {
 
 }
 
+//prints the noose based on how many misses the user has; iterates through each char of the secretWord, and checks if the char is present in the guesses array;
+//if it is, it prints the char, otherwise, it prints an underscore.
 void draw_letters(){
     int misses = wrong_guesses();
     printf("  _______       \n");
@@ -132,11 +134,7 @@ void draw_letters(){
 
 }
 
-
-/*void choose_secret_word () {
-    sprintf(secretWord, "MELANCIA");
-}
-*/
+//compares each guess (char) to each letter of the secretWord; if the secretWord does not contain the char stored in the array guesses[i], increments the misses by 1.
 int wrong_guesses() {
     int misses = 0;
     for (int i = 0; i < tries; i++) {
@@ -154,13 +152,15 @@ int wrong_guesses() {
     return misses;
 }
 
-
-
+//Checks whether the user guesses wrong 5 times, in that case, return true.
 int hanged() {
 
     return wrong_guesses() >= 5;
 }
 
+//more complicated than it needs to be
+//checks if there is a char in secretWord that is still not in the guesses array. If that is the case, returns 0, otherwise returns 1, meaning
+//the player won, and all the chars are in the guesses array, which means the player guessed all the letters.
 int won() {
     for (int i = 0; i < strlen(secretWord); i++) {
         if (!already_guessed(secretWord[i])) {

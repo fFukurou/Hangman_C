@@ -7,7 +7,6 @@ void opening();
 void get_guess();
 int already_guessed(char letter);
 void draw_letters();
-void choose_secret_word ();
 int hanged();
 int won();
 void choose_word();
