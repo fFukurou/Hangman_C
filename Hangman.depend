@@ -1,0 +1,12 @@
+# depslib dependency file v1.0
+1715883192 source:c:\users\supev\documents\eoq\alura\formacao em c\c avancando na linguagem\hangman\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"hangman.h"
+
+1715883250 c:\users\supev\documents\eoq\alura\formacao em c\c avancando na linguagem\hangman\hangman.h
+
+1715820401 source:c:\users\supev\documents\eoq\alura\formacao em c\c avancando na linguagem\hangman\hangman.h
+
